@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+{% include 'navbar.html' %}
+<style>
+    body {
+      background: url('https://i.ibb.co/1RnyLVC/stack.jpg');
+      background-repeat: repeat-y;
+    }
+    th {
+            padding: 10px 15px;
+            text-align: left;
+            width: auto;
+        }
+
+        td{
+            padding: 10px 15px;
+            text-align: left;
+            width: 1000px;
+        }
+
+        table {
+            table-layout: fixed;
+            background: rgba(252, 252, 252, 0.2)
+        }
+        div.shadow{
+            box-shadow: 10px 10px 5px grey;
+        }
+    </style>
+     
+<body>
+
+    {% for i in range(len_block)%}
+        {% for j in range(len_user)%}
+            {% for k in range(len_all_user_instances) %}
+                {% if k == j and k == i %}
+                    <div class="row red darken-3 shadow">                
+                        <h5 style="color: white">Block Number: {{all_user_instances[k]}}</h5>
+                        <h6 style="color: white">Block Created on {{block_timestamps[k]}}</h6>
+                    </div>
+                        {% for item in user_all_details[k].keys()%}
+                            <table>
+                                <tr>
+                                    {% if item == "UserID"%}
+                                        <th style="color: rgb(216, 48, 48);">{{item}}</th>
+                                        <td>{{user_all_details[k][item]}}</td>
+                                    {% else %}
+                                        <th style="color: black;">{{item}}</th>
+                                        <td>{{user_all_details[k][item]}}</td>
+                                    {%endif%}
+                                </tr>
+                            </table>
+                        {%endfor%}
+                    
+                {%endif%}
+            {% endfor %}
+        {% endfor %}
+    {% endfor %}
+</body>
+
+
